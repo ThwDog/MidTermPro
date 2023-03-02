@@ -13,6 +13,9 @@ public class UIPlayer : MonoBehaviour
 
     [SerializeField] float timeCount;
 
+    [SerializeField] GameObject startOb;
+    [SerializeField] GameObject iUOb;
+
     [SerializeField] Gun gun;
     [SerializeField] Spawnner spawnn;
     [SerializeField] Gate gate;
@@ -20,6 +23,11 @@ public class UIPlayer : MonoBehaviour
     private void Awake()
     {
         scriptText.text = "";
+        ammoText.text = "";
+
+        iUOb.SetActive(false);
+
+        Time.timeScale = 0;
     }
 
     void Start()
@@ -34,6 +42,15 @@ public class UIPlayer : MonoBehaviour
     {
         ammoCap();
         timeCountMet();
+    }
+
+    
+
+    public void playButton()
+    {
+        startOb.SetActive(false);
+        iUOb.SetActive(true);
+        Time.timeScale = 1f;
     }
 
     void ammoCap()
@@ -87,7 +104,7 @@ public class UIPlayer : MonoBehaviour
     IEnumerator textInGate()
     {
         scriptText.color = Color.red;
-        scriptText.text = "You Have To Survive For " + spawnn.setTime + " Minutes Before Helicopter Come";
+        scriptText.text = "You Have To Survive For " + spawnn.setTime + " Sec Before Helicopter Come";
         yield return new WaitForSeconds(10);
         scriptText.text = "";
     }

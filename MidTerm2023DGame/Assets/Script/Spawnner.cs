@@ -18,6 +18,12 @@ public class Spawnner : MonoBehaviour
 
     [SerializeField] Gate gate;
 
+    [Header("Set X Y")]
+    [SerializeField] float xMin;
+    [SerializeField] float xMax;
+    [SerializeField] float yMin;
+    [SerializeField] float yMax;
+
     void Start()
     {
         
@@ -55,8 +61,8 @@ public class Spawnner : MonoBehaviour
         GameObject instOb = enemy[Random.Range(0,enemy.Length)];
         Debug.Log(enemy);
         yield return new WaitForSeconds(spawntime);
-        Instantiate(instOb, new Vector3(Random.Range(enemySpawn.transform.position.x + -5f, enemySpawn.transform.position.x + 5f),
-        Random.Range(enemySpawn.transform.position.y + -3f, enemySpawn.transform.position.y + 3f), 0), Quaternion.identity);
+        Instantiate(instOb, new Vector3(Random.Range(enemySpawn.transform.position.x + xMin, enemySpawn.transform.position.x + xMax),
+        Random.Range(enemySpawn.transform.position.y + yMin, enemySpawn.transform.position.y + yMax), 0), Quaternion.identity);
         spawnCount++;
         if (time < setTime)
         {
